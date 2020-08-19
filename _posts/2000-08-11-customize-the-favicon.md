@@ -1,9 +1,9 @@
 ---
 title: Customize the Favicon
 author: Cotes Chung
-date: 2019-08-11 00:34:00 +0800
-categories: [Blogging, Tutorial]
-tags: [favicon]
+date: 2000-08-11 00:34:00 +0800
+categories: [Origin]
+# tags: [favicon]
 toc: false
 ---
 
