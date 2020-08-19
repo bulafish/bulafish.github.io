@@ -61,6 +61,7 @@ layout: default
       </div> <!-- .post-meta -->
 
       <div class="post-content">
+        {% include ads1.html %}
         {% if page.image %}
           <img src="{{ page.image }}">
         {% endif %}
@@ -73,7 +74,7 @@ layout: default
       </div>
 
       <div class="post-tail-wrapper text-muted">
-
+        {% include ads2.html %}
         <!-- categories -->
         {% if page.categories.size > 0 %}
         <div class="post-meta mb-3">

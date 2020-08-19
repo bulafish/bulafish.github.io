@@ -33,8 +33,6 @@ Easy and simple right?
 
 Next I will show you all how to implement the theme of your choices and more, stay tuned!
 
-{% include ads1.html %}
-
 RELATED POSTS:
 <br>[Install Ruby With Rvm On CentOS7](https://www.bulafish.com/sharings/centos/2018/04/24/install-ruby-with-rvm-on-centos7/)
 <br>[Upload Jekyll Theme To Github Pages](https://www.bulafish.com/sharings/2018/04/23/use-github-page-to-build-your-static-website/)

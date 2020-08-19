@@ -52,8 +52,6 @@ git push origin master
 Lastly, enter your username.github.io in the browser and you will see your brand new static website!
 <br>![github pages](/assets/img/2018042325.png)
 
-{% include ads1.html %}
-
 RELATED POSTS:
 <br>[Use Github Pages To Build Your Static Website](https://www.bulafish.com/sharings/2018/04/23/use-github-page-to-build-your-static-website/)
 <br>[Install Ruby With Rvm On CentOS7](https://www.bulafish.com/sharings/centos/2018/04/24/install-ruby-with-rvm-on-centos7/)
