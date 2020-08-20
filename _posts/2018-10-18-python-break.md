@@ -26,6 +26,7 @@ for x in range(1,11):
         print("unnecessary runs")
 ```
 
+{% include ads3.html %}
 
 Coding example `with` break:<br>
 Now let's see the difference with break in code.  We can see clearly that the loop breaks at the condition, which is number 3, and the rest of loops are not runned!
