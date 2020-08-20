@@ -19,19 +19,19 @@ Create a line group first, line notify only work for line group.
 Login https://notify-bot.line.me with your line account.
 
 Click your name on upper right hand corner, then click `My page`.  
-![line notify](/assets/images/2018071701.png)
+![line notify](/assets/img/2018071701.png)
 
 Scroll to the bottom and click `Generate token`.  
-![line notify](/assets/images/2018071702.png)
+![line notify](/assets/img/2018071702.png)
 
 Enter the name showing to notify you.  Check the last images if you ain't sure what to key.  
 Pick the line group to be notified  .
 Click `Generate token`.  
-![line notify](/assets/images/2018071703.png)
+![line notify](/assets/img/2018071703.png)
 
 Your line token will be prompted, copy it down and don't lose it, it is not recoverable.  
 Your line notify service will be created and shown on the list.  
-![line notify](/assets/images/2018071704.png)
+![line notify](/assets/img/2018071704.png)
 
 ## Config PAM：
 As our goal is to notify you when someone login your server, so that means [PAM](https://en.wikipedia.org/wiki/Linux_PAM) is involved.  Under `/etc/pam.d/` are all the services that is using PAM, append the following line to `/etc/pam.d/sshd` file.
@@ -82,7 +82,7 @@ I printed out `os.environ` and got the following variables.
 I want the message to look like, `who is using what service to login which server from where`, so using the variables above to compose the `msg` variable in the code.
 
 ## Outcome
-![line notify](/assets/images/2018071705.png)  
+![line notify](/assets/img/2018071705.png)  
 `notify` is the name you key in when generating the line token, so it would be helpful if an appropriate name is used.
 
 

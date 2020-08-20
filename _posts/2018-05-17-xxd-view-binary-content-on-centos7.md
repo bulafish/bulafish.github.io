@@ -18,9 +18,9 @@ To find my solution, xxd helped.  When I had suspicion about the php binary file
 ```bash
 xxd /opt/rh/rh-php56/root/usr/bin/php | less
 ```
-![xxd](/assets/images/2018051702.png)
+![xxd](/assets/img/2018051702.png)
 
 Hit `/` to change to search mode, type in the key word you looking for, then hit enter.  You can press `n` to look for next matching result.  Press `q` to quit.  
-![xxd](/assets/images/2018051703.png)
+![xxd](/assets/img/2018051703.png)
 
 Compared this value with the php binary file from `webtatic` and it proved my doubt.  When value is not set for `include_path` in php.ini file, value hard coded in binary file is used.

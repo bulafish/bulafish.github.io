@@ -21,16 +21,16 @@ Steps:<br>
 * Choose and set crontab expression
 * Configure function / action to perform and the target
 
-![CloudWatch Events](/assets/images/Xnip2019-01-30_15-34-36.png)
+![CloudWatch Events](/assets/img/Xnip2019-01-30_15-34-36.png)
 
 Navigate to CloudWatch Events Rules
-![CloudWatch Events](/assets/images/Xnip2019-01-30_15-15-52.jpg)
+![CloudWatch Events](/assets/img/Xnip2019-01-30_15-15-52.jpg)
 
 `Event Pattern`: For particular service and event function<br>
 `Schedule`: for actions to perform regularly.  Choose this option for this post.
 
 For Schedule, we can use a fixed rate of Minutes, Hours or Days.  If you need more complicated conditions, you can use the `Cron expression`.  The Cron expression is pretty much the same as regular linux crontab except that it has the `6th value` which represent `Year`.  Refer [Cron Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) for more details.
-![CloudWatch Events](/assets/images/Xnip2019-01-30_15-44-07.png)
+![CloudWatch Events](/assets/img/Xnip2019-01-30_15-44-07.png)
 
 {% include ads3.html %}
 
@@ -42,20 +42,20 @@ For our objective, we will use Cron expression and set the expression as `00 11 
 5. Year use * which means all
 
 Once the value is set, a list will show below for you to verify the result, you can adjust the expression to correct it.
-![CloudWatch Events](/assets/images/Xnip2019-01-30_16-31-39.png)
+![CloudWatch Events](/assets/img/Xnip2019-01-30_16-31-39.png)
 
 The last step is to configure the target and action to perform at scheduled time.
 1. From the drop down list, there are a lot of functions / services can be chosen from.  Here we choose `EC2 StopInstances API call`, which fits our objective.
 2. Input the target instance id for the action to perform to
 3. In order for CloudWatch Events to perform action (StopInstances) on EC2, proper role needs to be given.  Here we can choose to create a new one or an existing role that has appropriate privileges for the action.
 
-![CloudWatch Events](/assets/images/Xnip2019-01-30_16-37-15.png)
+![CloudWatch Events](/assets/img/Xnip2019-01-30_16-37-15.png)
 
 Give the rule a name and description and that's it!
-![CloudWatch Events](/assets/images/Xnip2019-01-30_16-45-30.png)
+![CloudWatch Events](/assets/img/Xnip2019-01-30_16-45-30.png)
 
 A finishing view
-![CloudWatch Events](/assets/images/Xnip2019-01-30_16-46-02.png)
+![CloudWatch Events](/assets/img/Xnip2019-01-30_16-46-02.png)
 
 REFERENCES:
 <br>[What is Amazon CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)

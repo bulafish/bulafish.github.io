@@ -10,7 +10,7 @@ What break does is it will break/stop the loop or code from continuing down when
 
 Coding example `without` break:<br>
 Let's say we want to guess the magic number, which is 3. So in a for loop, it will loop from 1 to 10 and print out designed line at number 3, but the loop will continue loop all the way till the end, which leads to wasting the resources.
-![python break](/assets/images/2018101801.png)
+![python break](/assets/img/2018101801.png)
 
 ```python
 magNum=3
@@ -29,7 +29,7 @@ for x in range(1,11):
 
 Coding example `with` break:<br>
 Now let's see the difference with break in code.  We can see clearly that the loop breaks at the condition, which is number 3, and the rest of loops are not runned!
-![python break](/assets/images/2018101802.png)
+![python break](/assets/img/2018101802.png)
 ```python
 magNum=3
 print(" ")

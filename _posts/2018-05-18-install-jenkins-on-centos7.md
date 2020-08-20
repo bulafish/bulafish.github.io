@@ -14,22 +14,22 @@ wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/je
 rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
 yum install jenkins java
 ```
-![jenkins](/assets/images/2018051814.png)  
-![jenkins](/assets/images/2018051815.png)  
-![jenkins](/assets/images/2018051816.png)
+![jenkins](/assets/img/2018051814.png)  
+![jenkins](/assets/img/2018051815.png)  
+![jenkins](/assets/img/2018051816.png)
 
 Start Jenkins service.
 ```bash
 systemctl start jenkins
 systemctl status jenkins
 ```
-![jenkins](/assets/images/2018051817.png)
+![jenkins](/assets/img/2018051817.png)
 
 Jenkins use 8080 port by default, we can double check by using `ss`.
 ```bash
 ss -tpln
 ```
-![jenkins](/assets/images/2018051818.png)
+![jenkins](/assets/img/2018051818.png)
 
 {% include ads3.html %}
 
@@ -37,30 +37,30 @@ You need to make sure port 8080 is accessible.  For simplicity, I will stop fire
 ```bash
 systemctl stop firewalld
 ```
-![jenkins](/assets/images/2018051828.png)
+![jenkins](/assets/img/2018051828.png)
 
 Now use browser to open Jenkins.  Type in `yourserverip:8080` or `yoururl:8080`.  
-![jenkins](/assets/images/2018051820.png)
+![jenkins](/assets/img/2018051820.png)
 
 As suggested, admin password can be found at `/var/lib/jenkins/secrets/initialAdminPassword`
 ```bash
 cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
-![jenkins](/assets/images/2018051821.png)
+![jenkins](/assets/img/2018051821.png)
 
 
 After passwd is enter, now we start to install plugins.  
-![jenkins](/assets/images/2018051822.png)
+![jenkins](/assets/img/2018051822.png)
 
 Plugins installing.  
-![jenkins](/assets/images/2018051823.png)
+![jenkins](/assets/img/2018051823.png)
 
 After plugins installation, we can decide to create a new user or continue as admin.  For simplicity, I will continue as admin.  
-![jenkins](/assets/images/2018051824.png)
+![jenkins](/assets/img/2018051824.png)
 
 Last step is to save the configuration.  
-![jenkins](/assets/images/2018051825.png)  
-![jenkins](/assets/images/2018051826.png)
+![jenkins](/assets/img/2018051825.png)  
+![jenkins](/assets/img/2018051826.png)
 
 Once clicked on start using jenkins, you are in Jenkins!  
-![jenkins](/assets/images/2018051827.png)
+![jenkins](/assets/img/2018051827.png)

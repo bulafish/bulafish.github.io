@@ -22,37 +22,37 @@ Now we begin the construction of last step.  The processes are
 3. configure destiny server to jenkins project
 
 Install necessary plugin.  
-![jenkins](/assets/images/2018052401.png)  
-![jenkins](/assets/images/2018052402.png)  
-![jenkins](/assets/images/2018052403.png)  
-![jenkins](/assets/images/2018052404.png)  
+![jenkins](/assets/img/2018052401.png)  
+![jenkins](/assets/img/2018052402.png)  
+![jenkins](/assets/img/2018052403.png)  
+![jenkins](/assets/img/2018052404.png)  
 
 Re-login jenkins server after plugin installation is done.  Setup destiny server.  
-![jenkins](/assets/images/2018052405.png)  
+![jenkins](/assets/img/2018052405.png)  
 Scroll almost to the bottom of the page to find `Publish over SSH section`.  
-![jenkins](/assets/images/2018052406.png)
+![jenkins](/assets/img/2018052406.png)
 
 {% include ads3.html %}
 
 Key in destiny server information.  You can key anything for `Name`, `Hostname` can be ip or FQDN, `Username` is the account used for jeknins to ssh destiny server, `Remote Directory` is the starting location of destiny server.  
-![jenkins](/assets/images/2018052418.png)  
+![jenkins](/assets/img/2018052418.png)  
 Key in the password for the `Username` and give it a test.  Please make sure jenkins server is accessible to destiny server's ssh port.  
-![jenkins](/assets/images/2018052408.png)  
+![jenkins](/assets/img/2018052408.png)  
 
 Destiny server is done configuring at this moment, next we configure destiny server to jenkins project.  Click into the desired jenkins project.  
-![jenkins](/assets/images/2018052409.png)  
-![jenkins](/assets/images/2018052410.png)  
-![jenkins](/assets/images/2018052411.png)  
+![jenkins](/assets/img/2018052409.png)  
+![jenkins](/assets/img/2018052410.png)  
+![jenkins](/assets/img/2018052411.png)  
 Choose the destiny server for project, only one destiny server is shown in the `Name` list cause only one server is built.  \***/*\* for `Source files` meaning all files.  `Remote directory` is the directory on destiny server where you want to codes to be put from jenkins server.  
-![jenkins](/assets/images/2018052419.png)  
+![jenkins](/assets/img/2018052419.png)  
 
 All settings are done now, take a look at the `/tmp/` of destiny server.  
-![jenkins](/assets/images/2018052414.png)
+![jenkins](/assets/img/2018052414.png)
 
 Now we test if everything will work out the way we expected.  You can commit changes to github to trigger jenkins server or simply click deploy on jenkins project.  
-![jenkins](/assets/images/2018052420.png)  
-![jenkins](/assets/images/2018052421.png)  
-![jenkins](/assets/images/2018052422.png)  
+![jenkins](/assets/img/2018052420.png)  
+![jenkins](/assets/img/2018052421.png)  
+![jenkins](/assets/img/2018052422.png)  
 
 Lastly, check on `/tmp/` directory of destiny server to confirm file has been updated successfuly.  
-![jenkins](/assets/images/2018052423.png)
+![jenkins](/assets/img/2018052423.png)

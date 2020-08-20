@@ -17,6 +17,6 @@ Once you have th rpm file, use this command to extract files from rpm package to
 ```bash
 rpm2cpio myrpmfile.rpm | cpio -idm
 ```
-![rpm2cpio](/assets/images/2018051708.png)
+![rpm2cpio](/assets/img/2018051708.png)
 
 Now you have all the files from the packages!  You can use -idmv to show the extracting process if you want to.

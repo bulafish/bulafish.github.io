@@ -28,14 +28,14 @@ Get server IP
 ```bash
 hostname -I
 ```
-![sed](/assets/images/2018091202.png)
+![sed](/assets/img/2018091202.png)
 
 Modify bashrc file, save returned IP to variable ip
 ```bash
 ip=`hostname -I | sed -e 's/[[:space:]]*$//'`
 ```
-![sed](/assets/images/2018091204.png)  
-![sed](/assets/images/2018091205.png)
+![sed](/assets/img/2018091204.png)  
+![sed](/assets/img/2018091205.png)
 
 Modify layout of CLI prompt, please refer below  
 [Set Or Change Hostname In CentOS7](https://www.bulafish.com/centos/2018/04/24/set-or-change-hostname-in-centos7/)  
@@ -45,10 +45,10 @@ Completed view of bashrc file
 ```bash
 PS1='\[\e[01;36m\]\u\[\e[01;37m\]@\[\e[01;33m\]\H\[\e[01;37m\]-\[\e[01;35m\]'"$ip"'\[\e[01;37m\]:\[\e[01;32m\]\w\[\e[01;37m\]\$\[\033[0;37m\] '
 ```
-![sed](/assets/images/2018091206.png)
+![sed](/assets/img/2018091206.png)
 
 Re-login to confirm the result.  Before and after  
-![sed](/assets/images/2018091207.png)
+![sed](/assets/img/2018091207.png)
 
 {% include ads3.html %}
 
@@ -57,38 +57,38 @@ Get server public IP
 ```bash
 curl -s ifconfig.me
 ```
-![sed](/assets/images/2018091208.png)
+![sed](/assets/img/2018091208.png)
 
 Create variable in environment for future replacement
 ```bash
 echo "ip=1.2.3.4" >> /etc/environment  
 ```
-![sed](/assets/images/2018091209.png)
+![sed](/assets/img/2018091209.png)
 
 Save public IP to env variable and save as shell script
 ```bash
 ip=$(curl -s ifconfig.me)
 sed -i -e "s/ip=.*/ip=$ip/g" /etc/environment
 ```
-![sed](/assets/images/2018091210.png)
+![sed](/assets/img/2018091210.png)
 
 Add getit.sh to rc.local file to execute on every reboot
 ```bash
 echo "/bin/bash /root/getip.sh" >> /etc/rc.d/rc.local
 ```
-![sed](/assets/images/2018091211.png)
+![sed](/assets/img/2018091211.png)
 
 Make files executable
 ```bash
 chmod +x /etc/rc.d/rc.local /root/getip.sh
 ```
-![sed](/assets/images/2018091212.png)
+![sed](/assets/img/2018091212.png)
 
 Modify bashrc
 ```bash
 PS1='\[\e[01;36m\]\u\[\e[01;37m\]@\[\e[01;33m\]\H\[\e[01;37m\]-\[\e[01;35m\]'"$ip"'\[\e[01;37m\]:\[\e[01;32m\]\w\[\e[01;37m\]\$\[\033[0;37m\] '
 ```
-![sed](/assets/images/2018091213.png)
+![sed](/assets/img/2018091213.png)
 
 Reboot server to confirm result  
-![sed](/assets/images/2018091214.png)
+![sed](/assets/img/2018091214.png)
