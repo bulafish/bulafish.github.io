@@ -6,7 +6,6 @@ categories: [AWS]
 tags: [S3]
 ---
 
-![AWS Migration and Transfer](/assets/img/m5V4PWJFr4dFuMdHCISTVA.png)
 
 Couple days ago a request came in from sales department saying that a customer is seeking for an option to transfer their files to AWS S3 and asking me for some ideas.
 
@@ -49,11 +48,13 @@ I saw some comments about using VMware native method to provide H.A for the inst
 
 Lastly, `AWS DataSync` is similar to Storage File Gateway. User needs to deploy an agent server in choice of `VMware ESXi` OR an `EC2`, then sync the data to S3 or EFS. This option would face the same H.A and scalability issue as well.
 
+{% include ads3.html %}
+
 `***`
 
 Now let’s look at the cost of [SFTP](https://aws.amazon.com/sftp/pricing/?nc1=h_ls){:target="_blank"}, [Storage Gateway](https://aws.amazon.com/storagegateway/pricing/){:target="_blank"}, [EFS](https://aws.amazon.com/efs/pricing/){:target="_blank"} and [AWS DataSync](https://aws.amazon.com/datasync/pricing/){:target="_blank"}.
 
-Calculating the cost of using certain AWS Service is always a huge job to me and I could never be sure if I got the figure correctly or not. So I always have to state it as a “`***predicted value***`” at the end of my work. So for this article, I am going list out the `obvious parts` of the cost of those services for comparision.
+Calculating the cost of using certain AWS Service is always a huge job to me and I could never be sure if I got the figure correctly or not. So I always have to state it as a “`predicted value`” at the end of my work. So for this article, I am going list out the `obvious parts` of the cost of those services for comparision.
 
 For `AWS SFTP` at Tokyo region, the cost break down as below
 1. SFTP endpoints, US$0.3/hr

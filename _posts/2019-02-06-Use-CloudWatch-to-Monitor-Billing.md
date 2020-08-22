@@ -6,13 +6,14 @@ categories: [AWS]
 tags: [CloudWatch]
 ---
 
-Introduction:<br>
+
+## Introduction:
 CloudWatch is a very handy monitoring system and it can monitor a lot of metrics in the AWS system.  This post is going to show you how to monitor your billing and send out notification if the billing excesses the threshold you set
 
-Objective:<br>
+## Objective:
 Set a threshold to your billing and use CloudWatch to monitor it and once the billing excesses the threshold, send out SNS for notification
 
-Steps:<br>
+## Steps:
 1. Set to receive billing alert
 2. Configure CloudWatch alert
 * Set threshold
