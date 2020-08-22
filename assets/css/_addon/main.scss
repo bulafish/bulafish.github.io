@@ -52,7 +52,7 @@ html[mode=dark] {
 
 html, body {
   // font-size: 16px;
-  font-size: 32px;
+  font-size: 18px;
 }
 
 body {
@@ -60,7 +60,8 @@ body {
   background: var(--body-bg);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
-  font-family: 'Source Sans Pro', 'Microsoft Yahei', sans-serif;
+  font-family: sans-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  // font-family: 'Source Sans Pro', 'Microsoft Yahei', sans-serif;
 }
 
 /*--- sidebar layout ---*/
