@@ -8,9 +8,9 @@ categories: [K8S]
 
 Container has been very popular recently. There are many different tools that can manage/orchestration containers and recently I am looking into [Kubernetes](https://kubernetes.io/){:target="_blank"}. A brief introduction,
 
-> [Kubernetes (K8s)](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/){:target="_blank"} is an open-source system for automating deployment, scaling, and management of containerized applications.
+> [Kubernetes (K8s)](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) is an open-source system for automating deployment, scaling, and management of containerized applications.
 
-Cloud service providers such as AWS, Azure, GCP, have their own kubernetes services such as [EKS](https://aws.amazon.com/eks/?nc1=h_ls){:target="_blank"}, [AKS](https://azure.microsoft.com/en-us/services/kubernetes-service/){:target="_blank"} and [GKE](https://azure.microsoft.com/en-us/services/kubernetes-service/){:target="_blank"}. With those fully managed service, users can get kubernetes service with only a few clicks and not to worry about high availability and elasticity.
+Cloud service providers such as AWS, Azure, GCP, have their own kubernetes services such as [EKS](http://images/flower.png%20Kubernetes%20(K8s)%20is%20an%20open-source%20system%20for%20automating%20deployment,%20scaling,%20and%20management%20of%20containerized%20applications.), [AKS](https://azure.microsoft.com/en-us/services/kubernetes-service/) and [GKE](https://azure.microsoft.com/en-us/services/kubernetes-service/). With those fully managed service, users can get kubernetes service with only a few clicks and not to worry about high availability and elasticity.
 
 But there are still some customers that choose to host/maintain their own kubernetes locally due to some policy/regulation requirements. Therefore this article is going to show you how to build kubernetes step by step on CentOS7.
 
@@ -140,7 +140,7 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
-> *For more detail and options about pot network, please refer [pod-network](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#pod-network){:target="_blank"}*
+> *For more detail and options about pot network, please refer [pod-network](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#pod-network)*
 
 ![bulafish](/assets/img/Xnip2019-05-27_16-33-36.png)
 
@@ -148,7 +148,7 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 
 Now let’s return to worker node. If you have the following error msg when issuing `kubeadm join`, you can do the following steps to solve it.
 
-> *\[WARNING IsDockerSystemdCheck\]: detected “cgroupfs” as the Docker cgroup driver. The recommended driver is “systemd”. Please follow the guide at <https://kubernetes.io/docs/setup/cri/>{:target="_blank"}*
+> *\[WARNING IsDockerSystemdCheck\]: detected “cgroupfs” as the Docker cgroup driver. The recommended driver is “systemd”. Please follow the guide at <https://kubernetes.io/docs/setup/cri/>*
 
 > `*If you have the above error msg when running **kubeadm join** command, then do the following setups.*`
 
