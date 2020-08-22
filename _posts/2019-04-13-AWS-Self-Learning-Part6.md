@@ -95,6 +95,8 @@ categories: [Study Note]
 * Cognito
 	* If develop SaaS application and need directory to manage and authenticate your user and that works with <mark>social media identities</mark> such as FB, Google and Amazon
 
+{% include ads3.html %}
+
 # Redshift
 * Redshitf has following logs
 	* Connection log
