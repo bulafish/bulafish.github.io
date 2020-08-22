@@ -3,7 +3,7 @@ title: Change Command Line Prompt Color In CentOS7
 author: bulafish
 date: 2018-04-25 +0800
 categories: [CentOS]
-tags: [Configuraion]
+tags: [Configuration]
 ---
 
 While ago when I was watching someone's youtube and found that his terminal command line prompt is colored and I found it actually very useful cause sometimes when too many terminals are opened, it was actually very easy to get confused!  Therefore if colors could be added to command line prompt, it would be very helpful to distinguish between each terminal connections and somehow prevent you from entering commands to the wrong server.
