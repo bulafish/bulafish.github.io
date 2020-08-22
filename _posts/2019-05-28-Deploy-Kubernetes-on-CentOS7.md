@@ -140,15 +140,17 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
+> *For more detail and options about pot network, please refer [pod-network](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#pod-network)*
+
 ![bulafish](/assets/img/Xnip2019-05-27_16-33-36.png)
 
 ***
 
 Now let’s return to worker node. If you have the following error msg when issuing `kubeadm join`, you can do the following steps to solve it.
 
-> [*WARNING IsDockerSystemdCheck]: detected “cgroupfs” as the Docker cgroup driver. The recommended driver is “systemd”. Please follow the guide at https://kubernetes.io/docs/setup/cri/*
+> *\[WARNING IsDockerSystemdCheck\]: detected “cgroupfs” as the Docker cgroup driver. The recommended driver is “systemd”. Please follow the guide at <https://kubernetes.io/docs/setup/cri/>*
 
-> *If you have the above error msg when running **kubeadm join** command, then do the following setups.*
+> `*If you have the above error msg when running **kubeadm join** command, then do the following setups.*`
 
 ```shell
 # Install necessary packages
@@ -198,7 +200,7 @@ kubeadm join 172.31.39.53:6443 --token 2nkiam.xxxxx --discovery-token-ca-cert-ha
 
 ***
 
-The worker node has been successfully added to kubernetes cluster. Now back to **master node** to confirm that the worker node is up and running.
+The worker node has been successfully added to kubernetes cluster. Now back to `master node` to confirm that the worker node is up and running.
 
 ```shell
 # Get the list and status of nodes
@@ -207,7 +209,7 @@ kubectl get nodes
 
 ![bulafish](/assets/img/Xnip2019-05-27_22-19-33.png)
 
-From the image, you can see that the worker node is **Ready**, meaning up and running. Till now, we have successfully done setting up the kubernetes cluster with a node added to it.
+From the image, you can see that the worker node is `Ready`, meaning up and running. Till now, we have successfully done setting up the kubernetes cluster with a node added to it.
 
 The last part is to deploy some containers to verify if the cluster works correctly. From master node,
 
