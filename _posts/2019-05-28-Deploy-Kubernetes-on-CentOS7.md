@@ -150,7 +150,7 @@ Now let’s return to worker node. If you have the following error msg when issu
 
 > *\[WARNING IsDockerSystemdCheck\]: detected “cgroupfs” as the Docker cgroup driver. The recommended driver is “systemd”. Please follow the guide at <https://kubernetes.io/docs/setup/cri/>{:target="_blank"}*
 
-> `*If you have the above error msg when running **kubeadm join** command, then do the following setups.*`
+> *If you have the above error msg when running **kubeadm join** command, then do the following setups.*
 
 ```shell
 # Install necessary packages

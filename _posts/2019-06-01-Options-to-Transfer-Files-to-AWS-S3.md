@@ -1,228 +1,99 @@
 ---
-title: Deploy Kubernetes on CentOS7
+title: Options to Transfer Files to AWS S3
 author: bulafish
 date: 2019-05-28 +0800
-categories: [K8S]
-# tags: []
+categories: [AWS]
+tags: [S3]
 ---
 
-Container has been very popular recently. There are many different tools that can manage/orchestration containers and recently I am looking into [Kubernetes](https://kubernetes.io/){:target="_blank"}. A brief introduction,
+![AWS Migration and Transfer](/assets/img/m5V4PWJFr4dFuMdHCISTVA.png)
 
-> [Kubernetes (K8s)](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) is an open-source system for automating deployment, scaling, and management of containerized applications.
+Couple days ago a request came in from sales department saying that a customer is seeking for an option to transfer their files to AWS S3 and asking me for some ideas.
 
-Cloud service providers such as AWS, Azure, GCP, have their own kubernetes services such as [EKS](http://images/flower.png%20Kubernetes%20(K8s)%20is%20an%20open-source%20system%20for%20automating%20deployment,%20scaling,%20and%20management%20of%20containerized%20applications.), [AKS](https://azure.microsoft.com/en-us/services/kubernetes-service/) and [GKE](https://azure.microsoft.com/en-us/services/kubernetes-service/). With those fully managed service, users can get kubernetes service with only a few clicks and not to worry about high availability and elasticity.
+Customer’s requirements are using FTP protocol and the expected HDD usage is about 10TB.
 
-But there are still some customers that choose to host/maintain their own kubernetes locally due to some policy/regulation requirements. Therefore this article is going to show you how to build kubernetes step by step on CentOS7.
+Prior to survey for solutions, the only way I know how to accomplish this request was to use `EC2(Linux) with [s3fs](https://github.com/s3fs-fuse/s3fs-fuse){:target="_blank"} package`. After some research, I came up with 4 more options which are:
 
-I have two VMs ready, one for master node, one for worker node.
+1. [AWS SFTP], Refer: AWS Trasfer for SFTP Walk Through
+2. [AWS Storage Gateway], Refer: AWS Storage File Gateway Walk Through
+3. [EC2 with AWS EFS], Refer: AWS EFS Walk Through
+4. [AWS DataSync], Refer: AWS DataSync Basic Walk Through
 
-![bulafish](/assets/img/Xnip2019-05-27_16-19-07.png)
+For more information of each services, please visit the links provide above.
 
-Setup k8S repo for `both` master and worker node.
+For the s3fs option, with the help of s3fs, I can mount S3 bucket as a mounting point on EC2(Linux), setup FTP service in EC2 and use S3 mounting point as the FTP file directory for data transferring.
 
-{% gist 257ba4f1c3bafb36433436206df0288d %}
+But after setting it up and try some testings, I found that the result is not as satisfied as expected. I tried to copy an ISO file, which is a little over 4GB in size, from OS to S3. It success in the first try but failed for the rest with an error msg saying something about permission deny or privilege error. I did not dig into cause personally, I prefer native solutions more than 3rd party’s solution so I just go ahead and look into other options.
 
-![bulafish](/assets/img/Xnip2019-05-27_16-24-58.png)
+Rather than talk about how to setup/configure/deploy those options, I want to talk a little bit about pros and cons of each of them.
 
-```shell
-# Set SELinux in permissive mode (effectively disabling it)
+![AWS SFTP](/assets/img/QNhdEFm3l1LFxE1a2R2Lkg.png)
 
-setenforce 0
-sed -i ‘s/^SELINUX=enforcing$/SELINUX=permissive/’ /etc/selinux/config
-```
-![bulafish](/assets/img/Xnip2019-05-27_16-25-32.png)
+AWS SFTP is a [fully managed service](https://aws.amazon.com/managed-services/features/){:target="_blank"}, which means that AWS will take care of the infrastructure and maintain the service, users don’t have to worry a thing. Whereas for File Gateway, users need to deploy an Gateway(EC2) and maintain high availability and scalability if needed
 
-```shell
-# Install kubernetes commands
+![AWS EFS](/assets/img/68mjWQdgHmvMM-ILiGu7GQ.png)
 
-yum install kubelet kubeadm kubectl -y
-```
+Same thing goes to `EC2 with EFS`. Thought `EFS is also a fully managed service`, but users need to deploy an EC2 and integrate it with EFS where the H.A and scalability if needed, is also the user’s responsibility.
 
-![bulafish](/assets/img/Xnip2019-05-27_16-26-26.png)
+![AWS Storage Gateway](/assets/img/wbiYt4_FHCQ9B8tb9GtBXQ.png)
 
-![bulafish](/assets/img/Xnip2019-05-27_16-26-37.png)
+As for [AWS Storage File Gateway](https://docs.aws.amazon.com/storagegateway/latest/userguide/Requirements.html#requirements-host){:target="_blank"}, there are couple ways to deploy Gateway instance, which are
 
-```shell
-# Start kubelet service when rebooting
+1. VMWare Esxi
+2. Hyper-V
+3. EC2
 
-systemctl enable --now kubelet
-```
+I saw some comments about using VMware native method to provide H.A for the instance but as I don’t have the environment to try it out so won’t say anything about it. I suppose Hyper-V should have some mechanism to provide H.A as well. In my case, I choose EC2, which in turn, would have the same H.A and scalability problem as other options.
 
-![bulafish](/assets/img/Xnip2019-05-27_16-27-05.png)
+![AWS DataSync](/assets/img/IKosVjgorgdRiksCpU-v2w.png)
 
-```shell
-# Load the br_netfiler module
+Lastly, `AWS DataSync` is similar to Storage File Gateway. User needs to deploy an agent server in choice of VMware ESXi OR an EC2, then sync the data to S3 or EFS. This option would face the same H.A and scalability issue as well.
 
-modprobe br_netfilter
-lsmod | grep br_netfilter
-```
+`***`
 
-{% include ads3.html %}
+Now let’s look at the cost of [SFTP](https://aws.amazon.com/sftp/pricing/?nc1=h_ls){:target="_blank"}, [Storage Gateway](https://aws.amazon.com/storagegateway/pricing/){:target="_blank"}, [EFS](https://aws.amazon.com/efs/pricing/){:target="_blank"} and [AWS DataSync](https://aws.amazon.com/datasync/pricing/){:target="_blank"}.
 
-![bulafish](/assets/img/Xnip2019-05-27_16-27-26.png)
+Calculating the cost of using certain AWS Service is always a huge job to me and I could never be sure if I got the figure correctly or not. So I always have to state it as a “`**predicted value**`” at the end of my work. So for this article, I am going list out the `obvious parts` of the cost of those services for comparision.
 
-```shell
-# To make sure traffic is routed correctly
+For `AWS SFTP` at Tokyo region, the cost break down as below
+1. SFTP endpoints, US$0.3/hr
+2. Data uploaded, US$0.04/GB
+3. Data downloaded, US$0.04/GB
 
-cat <<EOF > /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-EOF
-```
-![bulafish](/assets/img/Xnip2019-05-27_16-27-46.png)
+So, assume 10TB of data is upload and 5TB data is download in a month. The total cost for only using AWS SFTP, `NOT including` S3 Storage cost, would be
 
-```shell
-# Enable the setting
+> 0.3*24*30+0.04*1024*10+0.04*1024*5=216+409.6+204.8= `US$830.4/month`
 
-sysctl --system
-```
+For [Storage Gateway](https://docs.aws.amazon.com/storagegateway/latest/userguide/StorageGatewayConcepts.html){:target="_blank"}, there are actually three types of gateway services, which are `File`, `Tape` and `Volume Gateway`. Where Volume Gateway comes in two modes: `Cached` and `stored`. In my scenario, I will be talking about File Gateway and the cost of using it is break down as below
 
-![bulafish](/assets/img/Xnip2019-05-27_16-28-05.png)
+1. Data written to storage by Gateway, US$0.01/GB
+2. Data transfer out, US$0.114/GB
 
-```shell
-# Add Docker repository
+Assuming 10TB of data is written to S3, which the cost of S3 is not included, 5TB of data is transfer out, the cost would be
 
-yum-config-manager \
- --add-repo \
- https://download.docker.com/linux/centos/docker-ce.repo
- ```
+> 10240 * 0.01 + 5120 * 0.114 = 102.4 + 583.68 = `US$686.08/Month`
 
-![bulafish](/assets/img/Xnip2019-05-27_16-28-44.png)
+As for `AWS EFS`, there are three types of usage cost, which are
+1. Standard Storage, US$0.36/GB-Month
+2. Infrequent Access Storage, US$0.054/GB-Month PLUS Infrequent Access Requests, US$0.012/GB transferred
+3. Provisioned Throughput, US$7.2/MB/s-Month
 
-```shell
-# Install Docker CE
+For option 1, the cost is very straight forward, the total cost per month would be
 
-yum install docker-ce -y
-```
+> 10240 * 0.36 = `US$3686.4/Month`
 
-![bulafish](/assets/img/Xnip2019-05-27_16-29-09.png)
+Option 2, assuming 10TB of infrequent access storage with 5TB of infrequent access requests, the monthly cost would be
 
-![bulafish](/assets/img/Xnip2019-05-27_16-29-22.png)
+> 10240 * 0.054 + 5120 * 0.012 = 552.96 + 61.44 = `US$614.4`
 
-```shell
-# Enable, start docker and kubelet service
+For option 3, it is much more complicated, please use the [web page](https://calculator.aws/#/addService){:target="_blank"} provided by AWS to calculate the estimate cost. Be aware that the cost above doesn’t include EC2 cost as this option is worked with an EC2 instance.
 
-systemctl enable docker.service
-systemctl restart docker
-systemctl enable kubelet
-systemctl start kubelet
-```
+Lastly, the cost of `AWS DataSync` is quite straight forward too. It is calculated by the data copied `TO` and `FROM` S3 and EFS, which is US$0.04/GB. So in my scenario, I will copy 10TB of data to S3 and assume that I will copy 10TB out as well, the total cost not including S3 would be
 
-![bulafish](/assets/img/Xnip2019-05-27_16-30-23.png)
+> 10240 * 2 * 0.04 = `US$819.2/Month`
 
-So far, we have done the basic setups for `both` master and worker nodes. Next, let’s start to work on the `master node`.
+In conclusion, though AWS SFTP has fully managed service advantages but the cost is 2nd highest if EFS standard storage option is taken into consideration. Whereas EFS infrequent storage and access has the cheapest cost. So in my opinion, there is no best choice here where H.A, scalability and low cost are co-exist at the same time.
 
-***
+I think I will go for some experiments to see if I can increase H.A and high scalability for services with lower cost!
 
-```shell
-# Initial master node
-
-kubeadm init
-```
-
-![bulafish](/assets/img/Xnip2019-05-27_16-30-49.png)
-
-After initialization, copy down the `kubeadm join` command. It is needed to join worker nodes into kubernetes cluster.
-
-![bulafish](/assets/img/Xnip2019-05-27_16-32-51.png)
-
-```shell
-# If you are running as root, enter this command in order for kubeadm commands to work
-
-export KUBECONFIG=/etc/kubernetes/admin.conf
-```
-
-![bulafish](/assets/img/Xnip2019-05-27_16-33-09.png)
-
-```shell
-# Deploy a pod network to the cluster
-
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
-```
-
-> *For more detail and options about pot network, please refer [pod-network](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#pod-network)*
-
-![bulafish](/assets/img/Xnip2019-05-27_16-33-36.png)
-
-***
-
-Now let’s return to worker node. If you have the following error msg when issuing `kubeadm join`, you can do the following steps to solve it.
-
-> *\[WARNING IsDockerSystemdCheck\]: detected “cgroupfs” as the Docker cgroup driver. The recommended driver is “systemd”. Please follow the guide at <https://kubernetes.io/docs/setup/cri/>*
-
-> `*If you have the above error msg when running **kubeadm join** command, then do the following setups.*`
-
-```shell
-# Install necessary packages
-
-yum install yum-utils device-mapper-persistent-data lvm2
-```
-
-![bulafish](/assets/img/Xnip2019-05-27_21-55-30.png)
-
-![bulafish](/assets/img/Xnip2019-05-27_21-55-38.png)
-
-```shell
-# Create /etc/docker directory & setup daemon
-# Restart docker service
-
-mkdir /etc/docker
-cat > /etc/docker/daemon.json <<EOF
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2",
-  "storage-opts": [
-    "overlay2.override_kernel_check=true"
-  ]
-}
-EOF
-
-mkdir -p /etc/systemd/system/docker.service.d
-systemctl daemon-reload
-systemctl restart docker
-```
-
-![bulafish](/assets/img/Xnip2019-05-27_21-57-25.png)
-
-```shell
-# Finally, add worker node to kubernetes cluster by using the command generated from master node after kubeadm init command
-
-kubeadm join 172.31.39.53:6443 --token 2nkiam.xxxxx --discovery-token-ca-cert-hash sha256:266c7d0a89f26976fa8b5952f6xxxxx
-```
-
-> *It is very import to make sure that worker node is allowed to connect to worker node 6443 port!*
-
-![bulafish](/assets/img/Xnip2019-05-27_22-13-40.png)
-
-***
-
-The worker node has been successfully added to kubernetes cluster. Now back to `master node` to confirm that the worker node is up and running.
-
-```shell
-# Get the list and status of nodes
-kubectl get nodes
-```
-
-![bulafish](/assets/img/Xnip2019-05-27_22-19-33.png)
-
-From the image, you can see that the worker node is `Ready`, meaning up and running. Till now, we have successfully done setting up the kubernetes cluster with a node added to it.
-
-The last part is to deploy some containers to verify if the cluster works correctly. From master node,
-
-```shell
-# Create a container running sample image at port 8080
-kubectl run node-hello --image=gcr.io/google-samples/node-hello:1.0  --port=8080
-
-# Expose pod to outside world, external ip is the local ip of node server
-kubectl expose deployment.apps/node-hello --type="NodePort" --port 8080 --external-ip=172.31.40.107
-```
-
-![bulafish](/assets/img/Xnip2019-05-27_23-33-32.png)
-
-Now a sample container is deployed, use a browser to check the result!
-
-![bulafish](/assets/img/Xnip2019-05-27_23-36-18.png)
+If you have any/better idea/thoughts, please drop me a line and we can discuss about it :)
