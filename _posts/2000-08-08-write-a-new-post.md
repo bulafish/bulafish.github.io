@@ -2,8 +2,9 @@
 title: Writing a New Post
 author: Cotes Chung
 date: 2000-08-08 14:10:00 +0800
-categories: [Blogging, Tutorial]
-tags: [writing]
+categories: [Origin]
+# categories: [Blogging, Tutorial]
+# tags: [writing]
 ---
 
 ## Naming and Path

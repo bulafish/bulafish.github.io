@@ -2,8 +2,9 @@
 title: Text and Typography
 author: Cotes Chung
 date: 2000-08-08 11:33:00 +0800
-categories: [Blogging, Demo]
-tags: [typography]
+categories: [Origin]
+# categories: [Blogging, Demo]
+# tags: [typography]
 math: true
 ---
 
