@@ -14,6 +14,7 @@ Use [Supervisor](http://supervisord.org/introduction.html) as guardian angel to 
 ## briefting：
 Explanation from official website
 > Supervisor is a client/server system that allows its users to control a number of processes on UNIX-like operating systems.
+
 Configuration file of Supervisor is located at `/etc/supervisord.conf`
 Configuration file of monitored services can be put at `/etc/supervisord.d/`
 ![systemctl](/assets/img/20200828036.png)
