@@ -15,7 +15,7 @@ Create Org, its user account and set user account privileges on Grafana.  All ac
 1. Login Grafana as admin, create new Org
 2. Create new users, set privileges, verify user and move to new Org
 3. Add data source
-3. Create / import and configure required dashboards for Org
+4. Create / import and configure required dashboards for Org
 
 ## briefting：
 Let's say you only have `A` Grafana server and you want to provide its services to many different entities, for example, different departments in your company or different customers that you provide services to, yet all of them can only see their own data.  Also, all of them are read accessible only.  Any kind of modification on data nor dashborad etc are prohibitted.
