@@ -6,8 +6,6 @@ categories: [CentOS]
 tags: [Configuration]
 ---
 
-<br>
-
 ## Goal：
 Configure services to be managed by Systemd using systemctl command
 

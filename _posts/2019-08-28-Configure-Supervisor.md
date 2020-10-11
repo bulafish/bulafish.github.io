@@ -6,8 +6,6 @@ categories: [CentOS]
 tags: [Configuration]
 ---
 
-<br>
-
 ## Goal：
 Use [Supervisor](http://supervisord.org/introduction.html) as guardian angel to monitor process running on Linux, restart it if it fails
 

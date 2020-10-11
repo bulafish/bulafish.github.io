@@ -1,11 +1,10 @@
 ---
 title: Options to Transfer Files to AWS S3
 author: bulafish
-date: 2019-05-28 +0800
+date: 2019-06-01 +0800
 categories: [AWS]
 tags: [S3]
 ---
-
 
 Couple days ago a request came in from sales department saying that a customer is seeking for an option to transfer their files to AWS S3 and asking me for some ideas.
 

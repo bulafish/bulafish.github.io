@@ -53,16 +53,15 @@ Fluttering and dancing in the breeze.
 
 <http://127.0.0.1:4000>
 
+{% include ads3.html %}
 
 ## Footnote
 
 Click the hook will locate the footnote[^footnote].
 
-
 ## Image
 
 ![Desktop View]({{ "/assets/img/sample/mockup.png" | relative_url }})
-
 
 ## Inline code
 
@@ -94,7 +93,6 @@ This is a common code snippet, without syntax highlight and line number.
 $ date
 Sun Nov  3 15:11:12 CST 2019
 ```
-
 
 #### Terminal
 
@@ -162,7 +160,6 @@ fi;
   </div>
 </div>
 ```
-
 
 ## Reverse Footnote
 

@@ -6,8 +6,6 @@ categories: [Grafana7]
 # tags: [S3]
 ---
 
-<br>
-
 ## Goal：
 Create Org, its user account and set user account privileges on Grafana.  All actions are done by Grafana admin.
 

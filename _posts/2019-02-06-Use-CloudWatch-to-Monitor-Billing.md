@@ -6,7 +6,6 @@ categories: [AWS]
 tags: [CloudWatch]
 ---
 
-
 ## Introduction:
 CloudWatch is a very handy monitoring system and it can monitor a lot of metrics in the AWS system.  This post is going to show you how to monitor your billing and send out notification if the billing excesses the threshold you set
 

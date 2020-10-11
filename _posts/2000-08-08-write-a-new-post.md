@@ -43,6 +43,8 @@ categories: [Animal, Insect]
 tags: bee
 ```
 
+{% include ads3.html %}
+
 Then we should have two _category_ type pages placed in folder `categories` of root and one _tag_ type page placed in folder `tags`  of root:
 
 ```sh

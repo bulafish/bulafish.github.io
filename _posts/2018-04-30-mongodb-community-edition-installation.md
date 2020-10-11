@@ -79,5 +79,4 @@ REPLATED POSTS:
 [Setup MongoDB Replication With Arbiter Environment](https://www.bulafish.com/db/2018/04/30/setup-mongodb-replication-with-arbiter-environment/)
 
 REFERENCES:
-<br>[
-Install MongoDB Community Edition on Red Hat Enterprise or CentOS Linux](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/#run-mongodb-community-edition)
+<br>[Install MongoDB Community Edition on Red Hat Enterprise or CentOS Linux](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/#run-mongodb-community-edition)
